@@ -1,20 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import AppStack from "./app/Navigation/AppStack";
+import AuthStack from "./app/Navigation/AuthStack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // const dispatch = useDispatch();
+
+  // const { userData, login } = useSelector(state => state.User);
+
+  // const [loginChk, setloginChk] = useState(true);
+
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+
+  // const getUser = async () => {
+  //    let data = await Auth.getAccount();
+  //    if (data != null) {
+  //       dispatch(setUser(data));
+  //       setloginChk(false)
+  //    }else{
+  //       setloginChk(false)
+  //    }
+  // }
+
+  // if (loginChk) {
+  //   return null;
+  // }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        headerMode="none"
+        detachInactiveScreens={false}
+        initialRouteName="Auth"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Auth" component={AuthStack} />
+        <Stack.Screen name="Auth" component={AppStack} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
